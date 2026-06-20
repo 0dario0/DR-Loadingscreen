@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loading</title>
+    <link rel="stylesheet" href="css/index.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Lokální video (primární – funguje v FiveM) -->
+    <div id="local-bg">
+        <video id="local-video" autoplay loop muted playsinline>
+            <source src="vid/background.mp4" type="video/mp4" />
+            <source src="vid/background.webm" type="video/webm" />
+        </video>
+    </div>
+
+    <!-- YouTube overlay (funguje v prohlížeči, v FiveM CEF je blokované) -->
+    <div id="yt-bg" class="hidden">
+        <iframe id="yt-player"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen
+        ></iframe>
+    </div>
+
+    <!-- Tmavý overlay -->
+    <div id="overlay"></div>
+
+    <!-- Partikulový efekt (canvas) -->
+    <canvas id="particles"></canvas>
+
+    <!-- Logo -->
+    <div id="logo-wrap">
+        <img id="logo" src="img/logo.png" alt="Logo" onerror="this.style.display='none'" />
+    </div>
+
+    <!-- Střed - název serveru + loading -->
+    <div id="center-info">
+        <div id="server-title" class="fade-in">CONNECTIONG TO THE SERVER</div>
+        <div id="loading-status" class="fade-in">INSTALING...</div>
+        <div id="progress-wrap">
+            <div id="progress-bar">
+                <div id="progress-fill"></div>
+            </div>
+            <span id="progress-pct">0%</span>
+        </div>
+    </div>
+
+    <!-- Discord button -->
+    <button id="discord-btn" onclick="openDiscord()">
+        <svg id="discord-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        <span>Discord</span>
+    </button>
+
+    <!-- Tlačítko Vedení -->
+    <button id="staff-btn" onclick="toggleStaff()">
+        <span class="btn-icon">👥</span>
+        <span>Management</span>
+    </button>
+
+    <!-- Staff panel (pravá strana) -->
+    <div id="staff-overlay" class="hidden">
+        <div id="staff-panel">
+            <div id="staff-header">
+                <span>Management</span>
+                <button id="close-staff" onclick="toggleStaff()">✕</button>
+            </div>
+            <div id="staff-list"></div>
+        </div>
+    </div>
+
+    <!-- Hudební přehrávač -->
+    <div id="music-player">
+        <div id="music-info">
+            <div id="music-icon">♪</div>
+            <div id="music-meta">
+                <div id="music-title">Loading...</div>
+                <div id="music-artist">Sound</div>
+            </div>
+        </div>
+        <div id="music-controls">
+            <button class="mc-btn" id="btn-prev" onclick="prevTrack()" title="Předchozí">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
+            </button>
+            <button class="mc-btn mc-play" id="btn-play" onclick="togglePlay()" title="Přehrát/Pauza">
+                <svg id="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                <svg id="icon-play" viewBox="0 0 24 24" fill="currentColor" style="display:none"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <button class="mc-btn" id="btn-next" onclick="nextTrack()" title="Další">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zm2-8.14L11.03 12 8 14.14V9.86zM16 6h2v12h-2z"/></svg>
+            </button>
+        </div>
+        <div id="music-volume">
+            <span id="vol-icon" onclick="toggleMute()">🔊</span>
+            <input type="range" id="vol-slider" min="0" max="100" value="50" oninput="setVolume(this.value)" />
+        </div>
+    </div>
+
+    <!-- Skrytý audio element -->
+    <audio id="audio" preload="auto"></audio>
+
+    <!-- Vlastní kurzor -->
+    <div id="cursor-inner"></div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
