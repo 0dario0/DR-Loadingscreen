@@ -33,6 +33,9 @@ Moderní a plně upravitelný **Loading Screen pro FiveM**, který dodá vašemu
 - jednoduché a přehledné rozhraní
 - optimalizované pro FiveM servery
 
+## 📸 Ukázka
+<img width="1672" height="941" alt="DR_loadingscreen" src="https://github.com/user-attachments/assets/2063a306-f1de-479c-b19a-3ede4cd7c06d" />
+
 ---
 
 ## ⚙️ Instalace
