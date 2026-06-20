@@ -42,4 +42,4 @@ Moderní a plně upravitelný **Loading Screen pro FiveM**, který dodá vašemu
 3. Přidej do `server.cfg`:
 
 ```cfg
-ensure dr_loadingscreen
+ensure DR_Loadingscreen
