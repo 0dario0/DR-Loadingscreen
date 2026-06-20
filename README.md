@@ -1,48 +1,53 @@
 # 🚀 DR Loading Screen
 
-Moderní a plně upravitelný **Loading Screen pro FiveM**, který dodá vašemu serveru profesionální vzhled už při připojování hráče.
+A modern and fully customizable **FiveM Loading Screen** designed to give your server a professional first impression when players connect.
 
-## ✨ Funkce
+## ✨ Features
 
 ### 🎵 Custom Music Player
-- možnost přidávat vlastní písničky
-- jednoduchá editace playlistu přes soubory
-- podpora vlastních audio tracků
+- add your own music tracks
+- easy playlist editing through files
+- supports custom audio tracks
 
 ### 🎥 Custom Background Video
-- možnost vložit vlastní video na pozadí
-- podpora formátů **MP4/WebM**
-- jednoduchá výměna souboru
+- use your own background video
+- supports **MP4/WebM** formats
+- simple file replacement
 
 ### 🖼️ Editable Logo
-- možnost změnit logo vlevo nahoře
-- stačí nahradit image soubor
+- easily change the logo in the top-left corner
+- just replace the image file
 
 ### 🔗 Discord Invite Config
-- jednoduchá úprava Discord invite linku v `index.js`
+- easily edit your Discord invite link in `index.js`
 
 ### 👥 Management Menu
-- tlačítko otevře menu s vedením serveru
-- možnost upravit vlastní team / management / owners
+- button opens a menu showing the server management team
+- customizable team / management / owners section
 
 ### 📊 Loading Progress Bar
-- moderní progress bar při připojování na server
+- modern progress bar while connecting to the server
 
 ### 🎨 Modern UI Design
 - clean design
-- jednoduché a přehledné rozhraní
-- optimalizované pro FiveM servery
-
-## 📸 Ukázka
-<img width="1672" height="941" alt="DR_loadingscreen" src="https://github.com/user-attachments/assets/2063a306-f1de-479c-b19a-3ede4cd7c06d" />
+- simple and organized layout
+- optimized for FiveM servers
 
 ---
 
-## ⚙️ Instalace
+## 📸 Preview
 
-1. Stáhni script.
-2. Nahraj složku do `resources`.
-3. Přidej do `server.cfg`:
+### Screenshot Preview
+<img width="1672" height="941" alt="DR_loadingscreen" src="https://github.com/user-attachments/assets/66cbe8af-8656-4a0a-8d09-ef6016c0dabb" />
+
+
+---
+
+## ⚙️ Installation
+
+1. Download the script.
+2. Upload the folder into your `resources` directory.
+3. Add this to your `server.cfg`:
 
 ```cfg
 ensure DR_Loadingscreen
